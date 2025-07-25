@@ -40,7 +40,7 @@
     <p> ここに、\(x_M\)は規範モデルの位置です。係数\(a > 0\)、\(b > 0\)とします。</p>
   
   <h3>§適応制御則</h3>
-    <p>式\eqref{eq:ModEta}の\(\hat\eta\)を<a href="https://aoyamakohbo.github.io/AdaptCont/">超安定論によるモデル規範適応制御</a>
+    <p>式\eqref{eq:SysEqn}の\(\hat\eta\)を<a href="https://aoyamakohbo.github.io/AdaptCont/">超安定論によるモデル規範適応制御</a>
       で導出した適応制御則に従って調整します。</p>
       
     <p>微分ゲイン\(K_D\)と比例ゲイン\(K_P\)を次式で調整します。</p>
@@ -68,7 +68,7 @@
     <p>ここでは、\(a=25.12\)、\(b=3943\)、\(c=2/25.12\)、\(\alpha = 1.0\times 10^{-5}\)とします。</p>
  
 <h3>§数値実験</h3>
-  <p>\(\eta=0.5.2.0\)について\(\eta/\hat\eta\)の動作を<a href="https://aoyamakohbo.github.io/EulerMtd/">オイラー法による逐次数値積分</a> による数値シミュレーションで観察します。</p>
+  <p>制御対象\eqref{eq:SysEqn}を<a href="https://aoyamakohbo.github.io/EulerMtd/">オイラー法による逐次数値積分</a> により数値計算します。</p>
   <p>オイラー法の時間刻み\(\varDelta t = 0.0001\)[s]として計算します。\(x_0(n)=x(n)\)として</p>
 
 \begin{align}
@@ -111,7 +111,7 @@
       \end{array}
     \right]u(n). \label{eq:StateEq}
     \end{align} 
-    <p>式\eqref{eq:StateEq}を１回実行する間に式\eqref{eq:Euler}を\(T/\varDelta t=50\)回(\(k=0\cdots 49\))実行します。</p>
+    <p>離散時間状態方程式\eqref{eq:StateEq}を１回実行する間に式\eqref{eq:Euler}を\(T/\varDelta t=50\)回(\(k=0\cdots 49\))実行します。</p>
     <p>現実の制御対象では出力\(y=x\)以外の状態量は計測できませんので、
       ここでは\(\dot x\)を中央差分で近似します。</p>
     \begin{align}
@@ -142,7 +142,7 @@
 
     <p>いずれの場合も\(\eta/\hat{\eta}=1\)に収束しており(\(\hat{\eta} = \eta\))、
       <a href="https://aoyamakohbo.github.io/AdaptContVib1D/">モデル規範適応制御</a>
-      と同様に適応制御成功を確認できます。</p>
+      と同様に適応制御により制御対象\eqref{eq:SysEqn}が規範モデル\eqref{eq:MdlEqn}に一致することを確認できます。</p>
 
    <p><a href="https://aoyamakohbo.github.io/Craftlogy/">->TOP</a></p>
 </body>
