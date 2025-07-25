@@ -32,11 +32,6 @@
     \end{align}
 
     <p> ここに、\(x\)は位置、\(K_D\)は微分ゲイン、\(K_P\)は比例ゲイン、\(u\)は位置入力、\(\eta(>0)\)は駆動効率係数です。</p> 
-    <p>微分ゲイン\(K_D\)と比例ゲイン\(K_P\)を次式で調整します。</p>
-    \begin{align}
-      K_D = \frac{a}{\hat\eta},~~~~K_P = \frac{b}{\hat\eta}. \label{eq:ModEta}
-    \end{align}
-    <p>ここに、\(\hat\eta\)は駆動効率\(\eta\)の推定値です。</p>
 
     <p>目的とする制御性能を規範モデル規範モデルとして次式で与えます。</p>
       \begin{align}
@@ -47,6 +42,12 @@
   <h3>§適応制御則</h3>
     <p>式\eqref{eq:ModEta}の\(\hat\eta\)を<a href="https://aoyamakohbo.github.io/AdaptCont/">超安定論によるモデル規範適応制御</a>
       で導出した適応制御則に従って調整します。</p>
+      
+    <p>微分ゲイン\(K_D\)と比例ゲイン\(K_P\)を次式で調整します。</p>
+    \begin{align}
+      K_D = \frac{a}{\hat\eta},~~~~K_P = \frac{b}{\hat\eta}. \label{eq:ModEta}
+    \end{align}
+    <p>ここに、\(\hat\eta\)は駆動効率\(\eta\)の推定値です。</p>
 
     <p>適応制御則：</p>
     \begin{align}
@@ -133,14 +134,15 @@
 
     <h3>§数値実験結果</h3>
     <p>初期値\(\hat{\eta} = 1\)として、
-      \(\eta = 2.0\)と\(\eta = 0.5\)の場合について
-      規範モデル\(x_M\)に対する適応制御系\(x\)の挙動を数値実験により観察します。</p>
+      \(\eta = 2.0\)と\(\eta = 0.5\)の場合について\(\eta/\hat\eta\)の挙動を数値実験により観察します。</p>
     <img src="η_ηhat.jpg" width=600px>
 
-    <p>\(\eta = 2.0\)の場合、2000ステップで適応制御系\(x\)が規範モデル\(x_M\)に一致しています。</p>
-    <p>\(\eta = 0.5\)の場合、250ステップで適応制御系\(x\)が規範モデル\(x_M\)に一致しています。</p>
+    <p>\(\eta = 2.0\)の場合、2000ステップで\(\eta/\hat\eta=1\)収束しています。</p>
+    <p>\(\eta = 0.5\)の場合、250ステップで\(\eta/\hat\eta=1\)収束しています。</p>
 
-    <p>\(\eta/\hat{\eta}=1\)に収束(\(\hat{\eta} = \eta\))しており、適応制御成功を確認できます。</p>
+    <p>いずれの場合も\(\eta/\hat{\eta}=1\)に収束しており(\(\hat{\eta} = \eta\))、
+      <a href="https://aoyamakohbo.github.io/AdaptContVib1D/">モデル規範適応制御</a>
+      と同様に適応制御成功を確認できます。</p>
 
    <p><a href="https://aoyamakohbo.github.io/Craftlogy/">->TOP</a></p>
 </body>
