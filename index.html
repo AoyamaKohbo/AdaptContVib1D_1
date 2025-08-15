@@ -28,26 +28,20 @@
       を数値解析で確認します。</p>
 
     \begin{align}
-    \ddot x + \eta K_D \dot x + \eta K_P(x - u) = 0 \label{eq:SysEqn}
+    \ddot x - a\frac{\eta}{\hat\eta} \dot x + b\frac{\eta}{\hat\eta}(x - u) = 0 \label{eq:SysEqn}
     \end{align}
 
-    <p> ここに、\(x\)は位置、\(K_D\)は微分ゲイン、\(K_P\)は比例ゲイン、\(u\)は位置入力、\(\eta(>0)\)は駆動効率係数です。</p> 
+    <p> ここに、\(x\)は位置、\(u\)は位置入力、\(\eta(>0)\)は駆動効率、\(\hat\eta\)は駆動効率\(\eta\)の推定値です。</p> 
 
     <p>目的とする制御性能を規範モデル規範モデルとして次式で与えます。</p>
       \begin{align}
         \ddot x_M + a\dot x_M + b(x_M - u)= 0 \label{eq:MdlEqn}
       \end{align}
-    <p> ここに、\(x_M\)は規範モデルの位置です。係数\(a > 0\)、\(b > 0\)とします。</p>
+    <p> ここに、\(x_M\)は規範モデルの位置です。係数\(a=25.12\)、\(b=3943\)とします。</p>
   
   <h3>§適応制御則</h3>
-    <p>式\eqref{eq:SysEqn}の\(\hat\eta\)を<a href="https://aoyamakohbo.github.io/AdaptCont/">超安定論によるモデル規範適応制御</a>
+    <p>制御対象\eqref{eq:SysEqn}の\(\hat\eta\)を<a href="https://aoyamakohbo.github.io/AdaptCont/">超安定論によるモデル規範適応制御</a>
       で導出した適応制御則に従って調整します。</p>
-      
-    <p>微分ゲイン\(K_D\)と比例ゲイン\(K_P\)を次式で調整します。</p>
-    \begin{align}
-      K_D = \frac{a}{\hat\eta},~~~~K_P = \frac{b}{\hat\eta}. \label{eq:ModEta}
-    \end{align}
-    <p>ここに、\(\hat\eta\)は駆動効率\(\eta\)の推定値です。</p>
 
     <p>適応制御則：</p>
     \begin{align}
@@ -65,7 +59,7 @@
         c > \frac{1}{a} \label{eq:STR_Cond}
       \end{align}
 
-    <p>ここでは、\(a=25.12\)、\(b=3943\)、\(c=2/25.12\)、\(\alpha = 1.0\times 10^{-5}\)とします。</p>
+    <p>ここでは、\(c=2/25.12\)、\(\alpha = 1.0\times 10^{-2}\)とします。</p>
  
 <h3>§数値実験</h3>
   <p>制御対象\eqref{eq:SysEqn}を<a href="https://aoyamakohbo.github.io/EulerMtd/">オイラー法による逐次数値積分</a> により数値計算します。</p>
@@ -74,7 +68,7 @@
 \begin{align}
   \left.
     \begin{array}{@{\,}rl}
-       \ddot x_k(n)&=~ -\eta K_D \dot x_k(n) - \eta K_P\{x_k(n) - u(n)\},\\
+       \ddot x_k(n)&=~ -a\frac{\eta}{\hat\eta} \dot x_k(n) - b\frac{\eta}{\hat\eta}\{x_k(n) - u(n)\},\\
        \dot x_{k+1}(n)&=~ \dot x_k(n)+\ddot x_k(n)\varDelta t,\\
        x_{k+1}(n)&=~ x_k(n) + \dot x_k(n)\varDelta t + \frac{1}{2}\ddot x_k(n)\varDelta t^2.
     \end{array} \label{eq:Euler}
